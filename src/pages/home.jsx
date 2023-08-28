@@ -7,16 +7,6 @@ import geolib from 'geolib';
 const Home = () => {
     const [pointSelectionEnabled, setPointSelectionEnabled] = useState(false);
     const [selectedPoints, setSelectedPoints] = useState([]);
-    const [weatherData, setWeatherData] = useState({
-        pressure: '',
-        temperature: '',
-        elevation: '',
-        windDirection: '',
-        windIntensity: '',
-        radioFrequency: '',
-        radioAids: '',
-    });
-
     const [distanceAndCourse, setDistanceAndCourse] = useState({
         distance: 0,
         bearing: 0,
@@ -33,16 +23,16 @@ const Home = () => {
 
         const { lat, lng } = e.latlng;
 
-        const newPoint = { lat, lng, weatherData };
+        const newPoint = { lat, lng };
         setSelectedPoints([...selectedPoints, newPoint]);
 
         const marker = L.marker([lat, lng]).addTo(map);
         marker.bindPopup(`Lat: ${lat}<br>Lng: ${lng}`).openPopup();
     };
 
-    const handleWeatherChange = (field, value) => {
-        setWeatherData({ ...weatherData, [field]: value });
-    };
+    // const handleWeatherChange = (field, value) => {
+    //     setWeatherData({ ...weatherData, [field]: value });
+    //};
 
     useEffect(() => {
         map = L.map('map').setView([51.505, -0.09], 13); // Asignar el valor a map 
@@ -60,7 +50,6 @@ const Home = () => {
             map.remove();
         };
     }, [pointSelectionEnabled]);
-
 
 
     const calculateDistanceAndCourse = () => {
@@ -134,43 +123,80 @@ const Home = () => {
             <form>
                 Pressure:
                 <input
-                    type="text"
-                    name="pressure"
-                    value={weatherData.pressure}
-                    placeholder='pressure'
-                    onChange={(e) => handleWeatherChange('pressure', e.target.value)} />
+                     type="number"
+                     id="quantity"
+                     name="quantity"
+              
+                     min={0}
+                     max={100}
+                     step={1}
+                 />
                 Temperature:
-                <input type="text"
-                    name="temperature"
-                    value={weatherData.temperature}
-                    onChange={(e) => handleWeatherChange('temperature', e.target.value)} />
-                Elevation:
+                <input 
+                   type="number"
+                   id="quantity"
+                   name="quantity"
+                  
+                 
+                   min={0}
+                   max={100}
+                   step={1}
+                   />
+                  Elevation:
                 <input
-                    type="text"
-                    name="elevation"
-                    value={weatherData.elevation}
-                    onChange={(e) => handleWeatherChange('elevation', e.target.value)} />
-                WindDirection:
-                <input type="text"
-                    name="windDirection"
-                    value={weatherData.windDirection}
-                    onChange={(e) => handleWeatherChange('windDirection', e.target.value)} />
-                WindIntensity:
-                <input type="text"
-                    name="windIntensity"
-                    value={weatherData.windIntensity}
-                    onChange={(e) => handleWeatherChange('windIntensity', e.target.value)} />
+                   type="number"
+                   id="quantity"
+                   name="quantity"
+                 
+              
+                   min={0}
+                   max={100}
+                   step={1}
+                   /> 
+                    WindDirection:
+                <input 
+                   type="number"
+                   id="quantity"
+                   name="quantity"
+               
+                 
+                   min={0}
+                   max={100}
+                   step={1}
+                  />
+                 WindIntensity:
+                <input 
+                type="number"
+                id="quantity"
+                name="quantity"
+            
+          
+                min={0}
+                max={100}
+                step={1}
+               /> 
                 RadioFrequency:
-                <input type="text" 
-                name="radioFrequency" 
-                value={weatherData.radioFrequency}
-                 onChange={(e) => handleWeatherChange('radioFrequency', e.target.value)} />
-                RadioAids:
-                <input type="text" 
-                name="radioAids"
-                 value={weatherData.radioAids} 
-                 onChange={(e) => handleWeatherChange('radioAids', e.target.value)} />
-
+                <input
+                 type="number"
+                 id="quantity"
+                 name="quantity"
+                
+  
+                 min={0}
+                 max={100}
+                 step={1}
+                 />  
+                 RadioAids:
+                <input
+               type="number"
+               id="quantity"
+               name="quantity"
+           
+         
+               min={0}
+               max={100}
+               step={1}
+               />
                 <button type="submit">Submit</button>
             </form>
            
@@ -178,46 +204,86 @@ const Home = () => {
             <input type="text" placeholder='number of check points' />
            </div>
              
-
            <form>
             <h2>Arrival Airport</h2>
                 Pressure:
                 <input
-                    type="text"
-                    name="pressure"
-                    value={weatherData.pressure}
-                    onChange={(e) => handleWeatherChange('pressure', e.target.value)} />
+                     type="number"
+                     id="quantity"
+                     name="quantity"
+                   
+                  
+                     min={0}
+                     max={100}
+                     step={1}
+                 />
                 Temperature:
-                <input type="text"
-                    name="temperature"
-                    value={weatherData.temperature}
-                    onChange={(e) => handleWeatherChange('temperature', e.target.value)} />
-                Elevation:
+                <input 
+                   type="number"
+                   id="quantity"
+                   name="quantity"
+              
+                 
+                   min={0}
+                   max={100}
+                   step={1}
+                   />
+                  Elevation:
                 <input
-                    type="text"
-                    name="elevation"
-                    value={weatherData.elevation}
-                    onChange={(e) => handleWeatherChange('elevation', e.target.value)} />
-                WindDirection:
-                <input type="text"
-                    name="windDirection"
-                    value={weatherData.windDirection}
-                    onChange={(e) => handleWeatherChange('windDirection', e.target.value)} />
-                WindIntensity:
-                <input type="text"
-                    name="windIntensity"
-                    value={weatherData.windIntensity}
-                    onChange={(e) => handleWeatherChange('windIntensity', e.target.value)} />
+                   type="number"
+                   id="quantity"
+                   name="quantity"
+                 
+                
+                   min={0}
+                   max={100}
+                   step={1}
+                   /> 
+                    WindDirection:
+                <input 
+                   type="number"
+                   id="quantity"
+                   name="quantity"
+            
+              
+                   min={0}
+                   max={100}
+                   step={1}
+                  />
+                 WindIntensity:
+                <input 
+                type="number"
+                id="quantity"
+                name="quantity"
+              
+                
+                min={0}
+                max={100}
+                step={1}
+               /> 
                 RadioFrequency:
-                <input type="text" 
-                name="radioFrequency" 
-                value={weatherData.radioFrequency}
-                 onChange={(e) => handleWeatherChange('radioFrequency', e.target.value)} />
-                RadioAids:
-                <input type="text" 
-                name="radioAids"
-                 value={weatherData.radioAids} 
-                 onChange={(e) => handleWeatherChange('radioAids', e.target.value)} />
+                <input
+                 type="number"
+                 id="quantity"
+                 name="quantity"
+            
+                 
+                 min={0}
+                 max={100}
+                 step={1}
+                 />  
+                 RadioAids:
+                <input
+               type="number"
+               id="quantity"
+               name="quantity"
+            
+              
+               min={0}
+               max={100}
+               step={1}
+               />
+                <button type="submit">Submit</button>
             </form>
 
 
@@ -241,7 +307,7 @@ const Home = () => {
                 </div>
             </div>
             <div id="map" style={{ height: '400px' }}></div>
-        </div>
+        </div >
     )
 };
 

@@ -1,7 +1,7 @@
 import "./styles.css"
 import { Link } from 'react-router-dom';
 import React, { useState } from "react";
-import SelectButton from "../components/selectButton";
+
 
 
 const Header = () => {
@@ -32,12 +32,6 @@ const Header = () => {
                     </li>
                 </ul>
             </nav>
-            <div className="airplane">
-                <SelectButton />
-            </div>
-            <div>
-                <h1>DEPARTURE AIRPORT</h1>
-            </div>
         </header>
 
     )

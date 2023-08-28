@@ -1,13 +1,13 @@
 import './styles.css'
 import React from 'react'
 
-const Contact = () => {
+const Start = () => {
 
     return (  
         <div>
-        <h1>contact</h1>
+        <h1>Inicio prueba</h1>
     </div>
     )
 }
 
-export default Contact;
+export default Start;

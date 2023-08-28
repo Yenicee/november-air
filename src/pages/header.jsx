@@ -25,10 +25,13 @@ const Header = () => {
             <nav className="nav">
                 <ul>
                     <li>
-                        <Link to='/from'>Home</Link>
+                        <Link to='/index'>Inicio</Link>
                     </li>
                     <li>
-                        <Link to='/home'>Planning</Link>
+                        <Link to='/planning'>Planning</Link>
+                    </li>
+                    <li>
+                        <Link to='/contact'>Contac</Link>
                     </li>
                 </ul>
             </nav>

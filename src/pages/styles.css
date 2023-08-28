@@ -54,15 +54,15 @@ form{
 .nav ul li{
       display: inline-block;
       margin-right: 1rem;
-
-}
-
-.airplane{
-  position: fixed;
-  right: 2rem;
 }
 
 h1{
-  margin: 0.2rem;
-  padding: 0.2rem;
+ margin: 1rem;
+}
+
+.select{
+margin-right: 1rem;
+ float: right;
+ top: 20px; /* Ajusta este valor para controlar la distancia desde el borde superior */
+ right: 20px 
 }

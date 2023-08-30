@@ -4,8 +4,10 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { calculateDistance, calculateBearing } from '../components/calculateDistance';
 import SelectButton from '../components/aircraft';
+import { GenerateRows } from '../components/helpers';
 
 const Home = () => {
+    const [rowCount, setRowCount] = useState(1);
     const [pointSelectionEnabled, setPointSelectionEnabled] = useState(false);
     const [selectedPoints, setSelectedPoints] = useState([]);
     const [distanceAndCourse, setDistanceAndCourse] = useState({
@@ -48,7 +50,7 @@ const Home = () => {
         };
     }, [pointSelectionEnabled]);
 
-        const calculateDistanceAndCourse = () => {
+    const calculateDistanceAndCourse = () => {
         if (selectedPoints.length < 2) {
             return;
         }
@@ -78,16 +80,15 @@ const Home = () => {
                 <SelectButton />
             </div>
             <h1>DEPARTURE AIRPORT</h1>
-            
+
             <form>
                 Pressure:
                 <input
                     type="number"
                     id="quantity"
                     name="quantity"
-
-                    min={0}
-                    max={100}
+                    min={948}
+                    max={1050}
                     step={1}
                 />
                 Temperature:
@@ -95,10 +96,8 @@ const Home = () => {
                     type="number"
                     id="quantity"
                     name="quantity"
-
-
-                    min={0}
-                    max={100}
+                    min={-80}
+                    max={50}
                     step={1}
                 />
                 Elevation:
@@ -106,10 +105,8 @@ const Home = () => {
                     type="number"
                     id="quantity"
                     name="quantity"
-
-
-                    min={0}
-                    max={100}
+                    min={-1400}
+                    max={14000}
                     step={1}
                 />
                 WindDirection:
@@ -117,10 +114,8 @@ const Home = () => {
                     type="number"
                     id="quantity"
                     name="quantity"
-
-
                     min={0}
-                    max={100}
+                    max={360}
                     step={1}
                 />
                 WindIntensity:
@@ -128,10 +123,8 @@ const Home = () => {
                     type="number"
                     id="quantity"
                     name="quantity"
-
-
                     min={0}
-                    max={100}
+                    max={40}
                     step={1}
                 />
                 RadioFrequency:
@@ -139,10 +132,8 @@ const Home = () => {
                     type="number"
                     id="quantity"
                     name="quantity"
-
-
-                    min={0}
-                    max={100}
+                    min={118.0}
+                    max={118.925}
                     step={1}
                 />
                 RadioAids:
@@ -150,18 +141,29 @@ const Home = () => {
                     type="number"
                     id="quantity"
                     name="quantity"
-
-
-                    min={0}
-                    max={100}
+                    min={530}
+                    max={1700}
                     step={1}
                 />
                 <button type="submit">Submit</button>
             </form>
-
             <div>
-                <input type="text" placeholder='number of check points' />
+                <div>
+                    <input type="number"
+                        id='quantity'
+                        min={1}
+                        max={50}
+                        step={1}
+                        placeholder='number of check points'
+                        onChange={(e) => setRowCount(parseInt(e.target.value))}
+                    />
+                    <button onClick={GenerateRows}>GENERATE</button>
+                </div>
+                <table>
+                    <tbody>{GenerateRows(rowCount)}</tbody>
+                </table>
             </div>
+
 
             <form>
                 <h2>Arrival Airport</h2>
@@ -170,10 +172,8 @@ const Home = () => {
                     type="number"
                     id="quantity"
                     name="quantity"
-
-
-                    min={0}
-                    max={100}
+                    min={948}
+                    max={1050}
                     step={1}
                 />
                 Temperature:
@@ -181,10 +181,8 @@ const Home = () => {
                     type="number"
                     id="quantity"
                     name="quantity"
-
-
-                    min={0}
-                    max={100}
+                    min={-80}
+                    max={50}
                     step={1}
                 />
                 Elevation:
@@ -192,10 +190,8 @@ const Home = () => {
                     type="number"
                     id="quantity"
                     name="quantity"
-
-
-                    min={0}
-                    max={100}
+                    min={-1400}
+                    max={14000}
                     step={1}
                 />
                 WindDirection:
@@ -203,10 +199,8 @@ const Home = () => {
                     type="number"
                     id="quantity"
                     name="quantity"
-
-
                     min={0}
-                    max={100}
+                    max={360}
                     step={1}
                 />
                 WindIntensity:
@@ -214,10 +208,8 @@ const Home = () => {
                     type="number"
                     id="quantity"
                     name="quantity"
-
-
                     min={0}
-                    max={100}
+                    max={40}
                     step={1}
                 />
                 RadioFrequency:
@@ -225,10 +217,8 @@ const Home = () => {
                     type="number"
                     id="quantity"
                     name="quantity"
-
-
-                    min={0}
-                    max={100}
+                    min={118.0}
+                    max={118.925}
                     step={1}
                 />
                 RadioAids:
@@ -236,33 +226,46 @@ const Home = () => {
                     type="number"
                     id="quantity"
                     name="quantity"
-
-
-                    min={0}
-                    max={100}
+                    min={530}
+                    max={1700}
                     step={1}
                 />
                 <button type="submit">Submit</button>
             </form>
 
-
             <h2>PLAN YOUR FLIGHT</h2>
             <div>
                 <button id="markPointsBtn" onClick={enablePointSelection}>
-                    {pointSelectionEnabled ? 'Cancel Point Selection' : 'Select Points'}
+                    {pointSelectionEnabled ? 'Cancelar Selección de Puntos' : 'Seleccionar Puntos'}
                 </button>
                 {pointSelectionEnabled && (
                     <button onClick={calculateDistanceAndCourse} disabled={selectedPoints.length < 2}>
-                        Calculate Distance and Course
+                        Calcular Distancia y Rumbo
                     </button>
                 )}
                 <div>
-                    {distanceAndCourse.distance !== 0 && (
-                        <p>Distance: {distanceAndCourse.distance} nautical miles</p>
-                    )}
-                    {distanceAndCourse.bearing !== 0 && (
-                        <p>Bearing: {distanceAndCourse.bearing} degrees</p>
-                    )}
+                    {distanceAndCourse.distance !== 0 || distanceAndCourse.bearing !== 0 ? (
+                        <table className="table">
+                            <thead>
+                                <tr>
+                                    <th>Distancia</th>
+                                    <th>Rumbo</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {distanceAndCourse.distance !== 0 && (
+                                    <tr>
+                                        <td>{`${distanceAndCourse.distance} millas náuticas`}</td>
+                                    </tr>
+                                )}
+                                {distanceAndCourse.bearing !== 0 && (
+                                    <tr>
+                                        <td>{`${distanceAndCourse.bearing} grados`}</td>
+                                    </tr>
+                                )}
+                            </tbody>
+                        </table>
+                    ) : null}
                 </div>
             </div>
             <div id="map" style={{ height: '400px' }}></div>

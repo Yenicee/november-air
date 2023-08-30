@@ -1,0 +1,10 @@
+td, tr {
+    border: 1px solid #ccc;
+    padding: 8px;
+    display: block;
+    text-align: left;
+  }
+
+table{
+    border-collapse: collapse;
+}

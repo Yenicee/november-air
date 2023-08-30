@@ -66,3 +66,20 @@ margin-right: 1rem;
  top: 20px; /* Ajusta este valor para controlar la distancia desde el borde superior */
  right: 20px 
 }
+
+/***************STYLES TABLES*************************/
+
+.table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.table th, .table td {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: left;
+}
+
+.table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}

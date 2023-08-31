@@ -1,10 +1,21 @@
-td, tr {
-    border: 1px solid #ccc;
-    padding: 8px;
-    display: block;
-    text-align: left;
-  }
+.row-container {
+  display: flex;
+}
 
-table{
-    border-collapse: collapse;
+.row-container tr {
+  flex: 1;
+}
+
+.fuel-rem {
+  display: flex;
+  border: 0.1rem solid #ccc;
+}
+
+.fuel-rem tr {
+  flex: 2;
+}
+
+td {
+  border: 0.1rem solid #ccc;
+  font-size: 0.8rem;
 }

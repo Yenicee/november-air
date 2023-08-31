@@ -5,18 +5,27 @@ import 'leaflet/dist/leaflet.css';
 import { calculateDistance, calculateBearing } from '../components/calculateDistance';
 import SelectButton from '../components/aircraft';
 import { GenerateRows } from '../components/helpers';
+import CrearInput from '../components/input';
 
 const Home = () => {
-    const [rowCount, setRowCount] = useState(1);
+    //const de inputs
+    const [pressure, setPressure] = useState(948);
+    const [temperature, setTemperature] = useState(-80);
+    const [elevation, setElevation] = useState(-1400);
+    const [windDirection, setWindDirection] = useState(0);
+    const [windIntensity, setWindIntensity] = useState(0);
+    const [radioFrequency, setRadioFrequency] = useState(118.0);
+    const [radioAids, setRadioAids] = useState(530);
+
+    //otras
+    const [rowCount, setRowCount] = useState(0);
     const [pointSelectionEnabled, setPointSelectionEnabled] = useState(false);
     const [selectedPoints, setSelectedPoints] = useState([]);
     const [distanceAndCourse, setDistanceAndCourse] = useState({
         distance: 0,
         bearing: 0,
     });
-
     let map = null;
-
     const enablePointSelection = () => {
         setPointSelectionEnabled(!pointSelectionEnabled);
     };
@@ -74,163 +83,219 @@ const Home = () => {
         });
     };
 
+
     return (
         <div>
             <div className='select'>
                 <SelectButton />
             </div>
-            <h1>DEPARTURE AIRPORT</h1>
 
-            <form>
-                Pressure:
-                <input
-                    type="number"
-                    id="quantity"
-                    name="quantity"
-                    min={948}
-                    max={1050}
-                    step={1}
-                />
-                Temperature:
-                <input
-                    type="number"
-                    id="quantity"
-                    name="quantity"
-                    min={-80}
-                    max={50}
-                    step={1}
-                />
-                Elevation:
-                <input
-                    type="number"
-                    id="quantity"
-                    name="quantity"
-                    min={-1400}
-                    max={14000}
-                    step={1}
-                />
-                WindDirection:
-                <input
-                    type="number"
-                    id="quantity"
-                    name="quantity"
-                    min={0}
-                    max={360}
-                    step={1}
-                />
-                WindIntensity:
-                <input
-                    type="number"
-                    id="quantity"
-                    name="quantity"
-                    min={0}
-                    max={40}
-                    step={1}
-                />
-                RadioFrequency:
-                <input
-                    type="number"
-                    id="quantity"
-                    name="quantity"
-                    min={118.0}
-                    max={118.925}
-                    step={1}
-                />
-                RadioAids:
-                <input
-                    type="number"
-                    id="quantity"
-                    name="quantity"
-                    min={530}
-                    max={1700}
-                    step={1}
-                />
-                <button type="submit">Submit</button>
+            <h1>DEPARTURE AIRPORT</h1>
+            <form className="input-form">
+                Ad Code:
+                    <input
+                     type="text" 
+                     />
+               
+                <div className="input-row">
+                    Pressure
+                    <CrearInput
+                        type="number"
+                        id="pressure"
+                        name="pressure"
+                        min={948}
+                        max={1050}
+                        step={1}
+                        onChange={setPressure}
+                    />
+                </div>
+
+                <div className="input-row">
+                    Temperature
+                    <CrearInput
+                        type="number"
+                        id="temperature"
+                        name="temperature"
+                        min={-80}
+                        max={50}
+                        step={1}
+                        onChange={setTemperature}
+                    />
+                </div>
+                <div className='input-row'>
+                    Elevation
+                    <CrearInput
+                        type="number"
+                        id="quantity"
+                        name="quantity"
+                        min={-1400}
+                        max={14000}
+                        step={1}
+                        onChange={setElevation}
+                    />
+                </div>
+                <div className='input-row'>
+                    WindDirection
+                    <CrearInput
+                        type="number"
+                        id="quantity"
+                        name="quantity"
+                        min={0}
+                        max={360}
+                        step={1}
+                        onChange={setWindDirection}
+                    />
+                </div>
+
+                <div className='input-row'>
+                    WindIntensity
+                    <CrearInput
+                        type="number"
+                        id="quantity"
+                        name="quantity"
+                        min={0}
+                        max={40}
+                        step={1}
+                        onChange={setWindIntensity}
+                    />
+                </div>
+
+                <div className='input-row'>
+                    RadioFrequency
+                    <CrearInput
+                        type="number"
+                        id="quantity"
+                        name="quantity"
+                        min={118.0}
+                        max={118.925}
+                        step={1}
+                        onChange={setRadioFrequency}
+                    />
+                </div>
+
+                <div className='input-row'>
+                    RadioAids
+                    <CrearInput
+                        type="number"
+                        id="quantity"
+                        name="quantity"
+                        min={530}
+                        max={1700}
+                        step={1}
+                        onChange={setRadioAids}
+                    />
+                </div>
+
+                <button type="submit">Calcular datos</button>
             </form>
-            <div>
+
+            <div className='generate'>
                 <div>
                     <input type="number"
                         id='quantity'
-                        min={1}
+                        min={0}
                         max={50}
                         step={1}
-                        placeholder='number of check points'
+                        placeholder='check points'
                         onChange={(e) => setRowCount(parseInt(e.target.value))}
                     />
-                    <button onClick={GenerateRows}>GENERATE</button>
                 </div>
                 <table>
                     <tbody>{GenerateRows(rowCount)}</tbody>
                 </table>
             </div>
 
+            <h2>Arrival Airport</h2>
+            <form className='input-form'>
+                <div className="input-row">
+                    Pressure
+                    <CrearInput
+                        type="number"
+                        id="pressure"
+                        name="pressure"
+                        min={948}
+                        max={1050}
+                        step={1}
+                        onChange={setPressure}
+                    />
+                </div>
 
-            <form>
-                <h2>Arrival Airport</h2>
-                Pressure:
-                <input
-                    type="number"
-                    id="quantity"
-                    name="quantity"
-                    min={948}
-                    max={1050}
-                    step={1}
-                />
-                Temperature:
-                <input
-                    type="number"
-                    id="quantity"
-                    name="quantity"
-                    min={-80}
-                    max={50}
-                    step={1}
-                />
-                Elevation:
-                <input
-                    type="number"
-                    id="quantity"
-                    name="quantity"
-                    min={-1400}
-                    max={14000}
-                    step={1}
-                />
-                WindDirection:
-                <input
-                    type="number"
-                    id="quantity"
-                    name="quantity"
-                    min={0}
-                    max={360}
-                    step={1}
-                />
-                WindIntensity:
-                <input
-                    type="number"
-                    id="quantity"
-                    name="quantity"
-                    min={0}
-                    max={40}
-                    step={1}
-                />
-                RadioFrequency:
-                <input
-                    type="number"
-                    id="quantity"
-                    name="quantity"
-                    min={118.0}
-                    max={118.925}
-                    step={1}
-                />
-                RadioAids:
-                <input
-                    type="number"
-                    id="quantity"
-                    name="quantity"
-                    min={530}
-                    max={1700}
-                    step={1}
-                />
-                <button type="submit">Submit</button>
+                <div className="input-row">
+                    Temperature
+                    <CrearInput
+                        type="number"
+                        id="temperature"
+                        name="temperature"
+                        min={-80}
+                        max={50}
+                        step={1}
+                        onChange={setTemperature}
+                    />
+                </div>
+                <div className='input-row'>
+                    Elevation
+                    <CrearInput
+                        type="number"
+                        id="quantity"
+                        name="quantity"
+                        min={-1400}
+                        max={14000}
+                        step={1}
+                        onChange={setElevation}
+                    />
+                </div>
+                <div className='input-row'>
+                    WindDirection
+                    <CrearInput
+                        type="number"
+                        id="quantity"
+                        name="quantity"
+                        min={0}
+                        max={360}
+                        step={1}
+                        onChange={setWindDirection}
+                    />
+                </div>
+
+                <div className='input-row'>
+                    WindIntensity:
+                    <CrearInput
+                        type="number"
+                        id="quantity"
+                        name="quantity"
+                        min={0}
+                        max={40}
+                        step={1}
+                        onChange={setWindIntensity}
+                    />
+                </div>
+
+                <div className='input-row'>
+                    RadioFrequency
+                    <CrearInput
+                        type="number"
+                        id="quantity"
+                        name="quantity"
+                        min={118.0}
+                        max={118.925}
+                        step={1}
+                        onChange={setRadioFrequency}
+                    />
+                </div>
+
+                <div className='input-row'>
+                    RadioAids
+                    <CrearInput
+                        type="number"
+                        id="quantity"
+                        name="quantity"
+                        min={530}
+                        max={1700}
+                        step={1}
+                        onChange={setRadioAids}
+                    />
+                </div>
+                <button type="submit">Calcular datos</button>
             </form>
 
             <h2>PLAN YOUR FLIGHT</h2>

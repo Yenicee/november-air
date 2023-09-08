@@ -52,8 +52,7 @@ const CrearInput =({label, min, max, step, value, onChange}) => {
   
     onChange(validValue);
   };
-    
-    
+     
   return (
     <div>
       <label>{label}</label>
@@ -64,7 +63,7 @@ const CrearInput =({label, min, max, step, value, onChange}) => {
         max={max}
         step={step}
         value={value}
-        onChange={onChange}
+        onChange={handleInputChange}
       />
     </div>
   );

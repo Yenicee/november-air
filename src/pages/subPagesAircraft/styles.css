@@ -1,0 +1,21 @@
+.result-table {
+    background-color: rgb(212, 225, 225);
+}
+
+tbody {
+    border-collapse: collapse;
+    width: 5%;
+}
+
+tr,
+td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+}
+
+.adCode{
+    margin: 0.1rem;
+    width: 45px;
+    height: 35px;
+}

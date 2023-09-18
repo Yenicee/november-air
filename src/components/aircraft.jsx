@@ -1,14 +1,18 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 
-const SelectButton = ({ onSelectPlane }) => {
+const SelectButton = ({ }) => {
   const planes = ['C150L', 'C172B', 'C172P', 'C182T', 'PA28-235'];
   const [selectedPlane, setSelectedPlane] = useState('');
 
   const handlePlaneSelect = (plane) => {
     setSelectedPlane(plane);
-    onSelectPlane(plane);
   };
+
+  useEffect(() => {
+    if (selectedPlane) {
+      window.location.href = `/avion/${selectedPlane}`;
+    }
+  },[selectedPlane]);
 
   return (
     <div>
@@ -23,14 +27,16 @@ const SelectButton = ({ onSelectPlane }) => {
           ))}
         </select>
       </label>
-      {selectedPlane === 'C150L' && (
-        <Link to="/avion/C150L">avion</Link>
-      )}
-      {selectedPlane === 'C182T' && (
-        <Link to="/avion/C182T">otro avion</Link>
+      {selectedPlane && (
+        <div className="plane-name">
+          {selectedPlane}
+        </div>
       )}
     </div>
   );
 };
 
 export default SelectButton;
+
+
+

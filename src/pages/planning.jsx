@@ -4,8 +4,6 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css'
 import { calculateDistance, calculateBearing } from '../components/calculateDistance';
 import SelectButton from '../components/aircraft';
-import { Link } from 'react-router-dom';
-
 
 const Home = () => {
     const [selectedPlane, setSelectedPlane] = useState('');

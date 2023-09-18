@@ -48,8 +48,14 @@ const CrearInput =({label, min, max, step, value, onChange}) => {
       } else if (newValue > 1700) {
         validValue = 1700;
       }
+    } else if (label === "Weight") {
+      if (newValue < 2300) {
+        validValue = 2300;
+      } else if (newValue > 3100) {
+        validValue = 3100;
+      }
     }
-  
+
     onChange(validValue);
   };
      

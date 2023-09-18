@@ -461,7 +461,7 @@ const CalculateC182T = {
                 }
             }
         }
-        return depPressAlt;
+        return toffDist;
     },
 
    //segunda const
@@ -926,7 +926,7 @@ const CalculateC182T = {
                 }
             }
         }
-        return depPressAlt;
+        return toffDist;
     },
 };
 

@@ -59,7 +59,7 @@ const CalculateC150L = {
       if (depTempF > 102) {
         toffDist = 1768;
       }
-      
+
     }
     return toffDist;
   },
@@ -224,8 +224,190 @@ const CalculateC150L = {
     }
 
     return toffDist;
-  }
- 
+  },
+
+  //CONST DE PARA CALCULAR EL LANDING
+
+  landingDistance: (arrPress, arrElev, arrTemp) => {
+    let arrPressAlt = ((((Math.pow(arrPress / 1013.25, 1 / 5.2559)) - 1) / -0.0000225577) / 0.3048) + arrElev;
+    let depTempF = (arrTemp * 9 / 5) + 32;
+    let lndDist = 0;
+
+    if (arrPressAlt <= 0) {
+      lndDist = 445;
+
+      if (depTempF > 59 && depTempF <= 119) {
+        lndDist = 490;
+      }
+      if (depTempF > 119 && depTempF <= 179) {
+        lndDist = 535;
+      }
+    }
+    else if (arrPressAlt > 0 && arrPressAlt <= 2500) {
+      lndDist = 470;
+      if (depTempF > 50 && depTempF <= 110) {
+        lndDist = 517;
+      }
+      if (depTempF > 110 && depTempF <= 170) {
+        lndDist = 564;
+      }
+    }
+    else if (arrPressAlt > 2500 && arrPressAlt <= 5000) {
+      lndDist = 495;
+      if (depTempF > 41 && depTempF <= 101) {
+        lndDist = 545;
+      }
+      if (depTempF > 101 && depTempF <= 161) {
+        lndDist = 595;
+      }
+    }
+    else if (arrPressAlt > 5000) {
+      lndDist = 520;
+      if (depTempF > 32 && depTempF <= 92) {
+        lndDist = 572;
+      }
+      if (depTempF > 92 && depTempF <= 152) {
+        lndDist = 624;
+      }
+    }
+    return lndDist;
+  },
+
+  landingDistanceToClear50FeetObstacles: (arrPress, arrElev, arrTemp) => {
+    let arrPressAlt = ((((Math.pow(arrPress / 1013.25, 1 / 5.2559)) - 1) / -0.0000225577) / 0.3048) + arrElev;
+    let depTempF = (arrTemp * 9 / 5) + 32;
+    let lndDist = 0;
+
+    if (arrPressAlt <= 0) {
+      lndDist = 1075;
+
+      if (depTempF > 59 && depTempF <= 119) {
+        lndDist = 1183;
+      }
+      if (depTempF > 119 && depTempF <= 179) {
+        lndDist = 1291;
+      }
+    }
+    else if (arrPressAlt > 0 && arrPressAlt <= 2500) {
+      lndDist = 1135;
+      if (depTempF > 50 && depTempF <= 110) {
+        lndDist = 1249;
+      }
+      if (depTempF > 110 && depTempF <= 170) {
+        lndDist = 1363;
+      }
+    }
+    else if (arrPressAlt > 2500 && arrPressAlt <= 5000) {
+      lndDist = 1195;
+      if (depTempF > 41 && depTempF <= 101) {
+        lndDist = 1315;
+      }
+      if (depTempF > 101 && depTempF <= 161) {
+        lndDist = 1435;
+      }
+    }
+    else if (arrPressAlt > 5000) {
+      lndDist = 1255;
+      if (depTempF > 32 && depTempF <= 92) {
+        lndDist = 1381;
+      }
+      if (depTempF > 92 && depTempF <= 152) {
+        lndDist = 1507;
+      }
+    }
+    return lndDist;
+  },
+
+  landingDistanceGrassRunway: (arrPress, arrElev, arrTemp) => {
+    let arrPressAlt = ((((Math.pow(arrPress / 1013.25, 1 / 5.2559)) - 1) / -0.0000225577) / 0.3048) + arrElev;
+    let depTempF = (arrTemp * 9 / 5) + 32;
+    let lndDist = 0;
+
+    if (arrPressAlt <= 0) {
+      lndDist = 445 + (1075 * 0.20);
+
+      if (depTempF > 59 && depTempF <= 119) {
+        lndDist = 490 + (1183 * 0.20);
+      }
+      if (depTempF > 119 && depTempF <= 179) {
+        lndDist = 535 + (1291 * 0.20);
+      }
+    }
+    else if (arrPressAlt > 0 && arrPressAlt <= 2500) {
+      lndDist = 470 + (1135 * 0.20);
+      if (depTempF > 50 && depTempF <= 110) {
+        lndDist = 517 + (1249 * 0.20);
+      }
+      if (depTempF > 110 && depTempF <= 170) {
+        lndDist = 564 + (1363 * 0.20);
+      }
+    }
+    else if (arrPressAlt > 2500 && arrPressAlt <= 5000) {
+      lndDist = 495 + (1195 * 0.20);
+      if (depTempF > 41 && depTempF <= 101) {
+        lndDist = 545 + (1315 * 0.20);
+      }
+      if (depTempF > 101 && depTempF <= 161) {
+        lndDist = 595 + (1435 * 0.20);
+      }
+    }
+    else if (arrPressAlt > 5000) {
+      lndDist = 520 + (1255 * 0.20);
+      if (depTempF > 32 && depTempF <= 92) {
+        lndDist = 572 + (1381 * 0.20);
+      }
+      if (depTempF > 92 && depTempF <= 152) {
+        lndDist = 624 + (1507 * 0.20);
+      }
+    }
+    return lndDist;
+  },
+
+  landingDistanceGrassRunwayToClear50FeetObstacles: (arrPress, arrElev, arrTemp) => {
+    let arrPressAlt = ((((Math.pow(arrPress / 1013.25, 1 / 5.2559)) - 1) / -0.0000225577) / 0.3048) + arrElev;
+    let depTempF = (arrTemp * 9 / 5) + 32;
+    let lndDist = 0;
+
+    if (arrPressAlt <= 0) {
+      lndDist = 1075 + (1075 * 0.20);
+
+      if (depTempF > 59 && depTempF <= 119) {
+        lndDist = 1183 + (1183 * 0.20);
+      }
+      if (depTempF > 119 && depTempF <= 179) {
+        lndDist = 1291 + (1291 * 0.20);
+      }
+    }
+    else if (arrPressAlt > 0 && arrPressAlt <= 2500) {
+      lndDist = 1135 + (1135 * 0.20);
+      if (depTempF > 50 && depTempF <= 110) {
+        lndDist = 1249 + (1249 * 0.20);
+      }
+      if (depTempF > 110 && depTempF <= 170) {
+        lndDist = 1363 + (1363 * 0.20);
+      }
+    }
+    else if (arrPressAlt > 2500 && arrPressAlt <= 5000) {
+      lndDist = 1195 + (1195 * 0.20);
+      if (depTempF > 41 && depTempF <= 101) {
+        lndDist = 1315 + (1315 * 0.20);
+      }
+      if (depTempF > 101 && depTempF <= 161) {
+        lndDist = 1435 + (1435 * 0.20);
+      }
+    }
+    else if (arrPressAlt > 5000) {
+      lndDist = 1255 + (1255 * 0.20);
+      if (depTempF > 32 && depTempF <= 92) {
+        lndDist = 1381 + (1381 * 0.20);
+      }
+      if (depTempF > 92 && depTempF <= 152) {
+        lndDist = 1507 + (1507 * 0.20);
+      }
+    }
+    return lndDist;
+  },
+
 };
 
 export default CalculateC150L;

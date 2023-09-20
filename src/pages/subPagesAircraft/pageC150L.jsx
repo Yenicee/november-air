@@ -7,47 +7,56 @@ import { GenerateRows } from '../../components/helpers';
 const PageC150l = () => {
     const [rowCount, setRowCount] = useState(0);
     //const de inputs
-    const [pressure, setPressure] = useState(0); //948
-    const [temperature, setTemperature] = useState(0); //-80
-    const [elevation, setElevation] = useState(0); //-1400
-    const [windDirection, setWindDirection] = useState(0);
-    const [windIntensity, setWindIntensity] = useState(0);
-    const [radioFrequency, setRadioFrequency] = useState(0); //118.0
-    const [radioAids, setRadioAids] = useState(0);  //530
-
-    const [distanceAndCoursePlane, setDistanceAndCoursePlane] = useState({
+    // Estados para el primer formulario
+    const [pressure1, setPressure1] = useState(0);
+    const [temperature1, setTemperature1] = useState(0);
+    const [elevation1, setElevation1] = useState(0);
+    const [distanceAndCoursePlane1, setDistanceAndCoursePlane1] = useState({
         takeOffDistance: 0,
         takeOffDistanceClear50FeetObstacles: 0,
         takeOffDistanceGrassRunway: 0,
         takeOffDistanceGrassRunwayClear50FeetObstacles: 0,
-        // Se agregan constantes para la distancia de aterrizaje
+        landingDistance: 0,
+        landingDistanceToClear50FeetObstacles: 0,
+        landingDistanceGrassRunway: 0,
+        landingDistanceGrassRunwayToClear50FeetObstacles: 0,
+    });
+    // Estados para el segundo formulario
+    const [pressure2, setPressure2] = useState(0);
+    const [temperature2, setTemperature2] = useState(0);
+    const [elevation2, setElevation2] = useState(0);
+    const [distanceAndCoursePlane2, setDistanceAndCoursePlane2] = useState({
+        takeOffDistance: 0,
+        takeOffDistanceClear50FeetObstacles: 0,
+        takeOffDistanceGrassRunway: 0,
+        takeOffDistanceGrassRunwayClear50FeetObstacles: 0,
         landingDistance: 0,
         landingDistanceToClear50FeetObstacles: 0,
         landingDistanceGrassRunway: 0,
         landingDistanceGrassRunwayToClear50FeetObstacles: 0,
     });
 
-    //Calcula la distancia del avion C150L.
-    const handleCalculateTakeoffAndLandingDistance = () => {
+    const [windDirection, setWindDirection] = useState(0);
+    const [windIntensity, setWindIntensity] = useState(0);
+    const [radioFrequency, setRadioFrequency] = useState(0); //118.0
+    const [radioAids, setRadioAids] = useState(0);  //530
 
-        // Obtener los valores de estado directamente
-        const pressureValue = pressure;
-        const temperatureValue = temperature;
-        const elevationValue = elevation;
-
-        //Let de despegue
+    const handleCalculateTakeoffAndLandingDistance = (formNumber) => {
+        // Obtener los valores de estado directamente según el número de formulario
+        const pressureValue = formNumber === 1 ? pressure1 : pressure2;
+        const temperatureValue = formNumber === 1 ? temperature1 : temperature2;
+        const elevationValue = formNumber === 1 ? elevation1 : elevation2;
+        // Let de despegue
         let toffDist = 0;
         let toffDistClear50FeetObstacles = 0;
         let toffDistGrassRunway = 0;
         let toffDistGrassRunwayClear50FeetObstacles = 0;
-
         // Let de aterrizaje
         let landingDist = 0;
         let landingDistClear50FeetObstacles = 0;
         let landingDistGrassRunway = 0;
         let landingDistGrassRunwayClear50FeetObstacles = 0;
-
-        //Los calculos de despegue
+        // Los cálculos de despegue
         if ('C150L') {
             toffDist = CalculateC150L.takeOffDistance(
                 pressureValue,
@@ -70,7 +79,8 @@ const PageC150l = () => {
                 temperatureValue
             );
         }
-        //Los calculos de aterrizaje del C150L
+
+        // Los cálculos de aterrizaje del C150L
         if ('C150L') {
             landingDist = CalculateC150L.landingDistance(
                 pressureValue,
@@ -93,23 +103,40 @@ const PageC150l = () => {
                 temperatureValue
             );
         }
-
-        // Actualiza los resultados en el estado
-        setDistanceAndCoursePlane({
-            takeOffDistance: parseFloat(toffDist),
-            takeOffDistanceClear50FeetObstacles: parseFloat(toffDistClear50FeetObstacles),
-            takeOffDistanceGrassRunway: parseFloat(toffDistGrassRunway),
-            takeOffDistanceGrassRunwayClear50FeetObstacles: parseFloat(
-                toffDistGrassRunwayClear50FeetObstacles,
-            ),
-            // Agrega los resultados de aterrizaje al estado
-            landingDistance: parseFloat(landingDist),
-            landingDistanceToClear50FeetObstacles: parseFloat(landingDistClear50FeetObstacles),
-            landingDistanceGrassRunway: parseFloat(landingDistGrassRunway),
-            landingDistanceGrassRunwayToClear50FeetObstacles: parseFloat(
-                landingDistGrassRunwayClear50FeetObstacles,
-            ),
-        });
+        // Actualiza los resultados en el estado según el número de formulario
+        if (formNumber === 1) {
+            setDistanceAndCoursePlane1({
+                takeOffDistance: parseFloat(toffDist),
+                takeOffDistanceClear50FeetObstacles: parseFloat(toffDistClear50FeetObstacles),
+                takeOffDistanceGrassRunway: parseFloat(toffDistGrassRunway),
+                takeOffDistanceGrassRunwayClear50FeetObstacles: parseFloat(
+                    toffDistGrassRunwayClear50FeetObstacles,
+                ),
+                // Agrega los resultados de aterrizaje al estado
+                landingDistance: parseFloat(landingDist),
+                landingDistanceToClear50FeetObstacles: parseFloat(landingDistClear50FeetObstacles),
+                landingDistanceGrassRunway: parseFloat(landingDistGrassRunway),
+                landingDistanceGrassRunwayToClear50FeetObstacles: parseFloat(
+                    landingDistGrassRunwayClear50FeetObstacles,
+                ),
+            });
+        } else if (formNumber === 2) {
+            setDistanceAndCoursePlane2({
+                takeOffDistance: parseFloat(toffDist),
+                takeOffDistanceClear50FeetObstacles: parseFloat(toffDistClear50FeetObstacles),
+                takeOffDistanceGrassRunway: parseFloat(toffDistGrassRunway),
+                takeOffDistanceGrassRunwayClear50FeetObstacles: parseFloat(
+                    toffDistGrassRunwayClear50FeetObstacles,
+                ),
+                // Agrega los resultados de aterrizaje al estado
+                landingDistance: parseFloat(landingDist),
+                landingDistanceToClear50FeetObstacles: parseFloat(landingDistClear50FeetObstacles),
+                landingDistanceGrassRunway: parseFloat(landingDistGrassRunway),
+                landingDistanceGrassRunwayToClear50FeetObstacles: parseFloat(
+                    landingDistGrassRunwayClear50FeetObstacles,
+                ),
+            });
+        }
     };
 
     return (
@@ -127,8 +154,8 @@ const PageC150l = () => {
                         min={948}
                         max={1050}
                         step={1}
-                        value={pressure}
-                        onChange={(newValue) => setPressure(newValue)}
+                        value={pressure1}
+                        onChange={(newValue) => setPressure1(newValue)}
                     />
                 </div>
                 <div className="input-row">
@@ -137,8 +164,8 @@ const PageC150l = () => {
                         min={-80}
                         max={50}
                         step={1}
-                        value={temperature}
-                        onChange={(newValue) => setTemperature(newValue)}
+                        value={temperature1}
+                        onChange={(newValue) => setTemperature1(newValue)}
                     />
                 </div>
                 <div className='input-row'>
@@ -147,8 +174,8 @@ const PageC150l = () => {
                         min={-1400}
                         max={14000}
                         step={1}
-                        value={elevation}
-                        onChange={(newValue) => setElevation(newValue)}
+                        value={elevation1}
+                        onChange={(newValue) => setElevation1(newValue)}
                     />
                 </div>
                 <div className='input-row'>
@@ -158,7 +185,8 @@ const PageC150l = () => {
                         min={0}
                         max={360}
                         step={1}
-                        onChange={(newValue) => setWindDirection}
+                        value={windDirection}
+                        onChange={(newValue) => setWindDirection(newValue)}
                     />
                 </div>
                 <div className='input-row'>
@@ -168,7 +196,8 @@ const PageC150l = () => {
                         min={0}
                         max={40}
                         step={1}
-                        onChange={(newValue) => setWindIntensity}
+                        value={windIntensity}
+                        onChange={(newValue) => setWindIntensity(newValue)}
                     />
                 </div>
                 <div className='input-row'>
@@ -178,7 +207,8 @@ const PageC150l = () => {
                         min={118.0}
                         max={118.925}
                         step={1}
-                        onChange={(newValue) => setRadioFrequency}
+                        value={radioFrequency}
+                        onChange={(newValue) => setRadioFrequency(newValue)}
                     />
                 </div>
                 <div className='input-row'>
@@ -188,69 +218,67 @@ const PageC150l = () => {
                         min={530}
                         max={1700}
                         step={1}
-                        onChange={(newValue) => setRadioAids}
+                        value={radioAids}
+                        onChange={(newValue) => setRadioAids(newValue)}
                     />
                 </div>
-                <button type='button' onClick={handleCalculateTakeoffAndLandingDistance}>
+                <button type='button' onClick={() => handleCalculateTakeoffAndLandingDistance(1)}>
                     Calculate takeoff distance
                 </button>
             </form>
 
             <div className='result-table-container'>
-                {
-                    distanceAndCoursePlane.takeOffDistance !== 0 && (
-                        <div>
-                            <table className="result-table">
-                                <tbody>
-                                    <tr>
-                                        <td>TakeOff Distance</td>
-                                        <td>{distanceAndCoursePlane.takeOffDistance}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>TakeOff Distance to clear 50ft Obstacle</td>
-                                        <td>{distanceAndCoursePlane.takeOffDistanceClear50FeetObstacles}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>TakeOff Distance grass Runway</td>
-                                        <td>{distanceAndCoursePlane.takeOffDistanceGrassRunway}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>TakeOff Distance grass Runway to clear 50ft Obstacle</td>
-                                        <td>{distanceAndCoursePlane.takeOffDistanceGrassRunwayClear50FeetObstacles}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    )
-                }
-                {/* ACA SE COLOCA LA SEGUNDA TABLA LANDING */}
+                {/* Primera tabla de resultados de despegue */}
+                {distanceAndCoursePlane1.takeOffDistance !== 0 && (
+                    <div>
+                        <table className="result-table">
+                            <tbody>
+                                <tr>
+                                    <td>TakeOff Distance</td>
+                                    <td>{distanceAndCoursePlane1.takeOffDistance}</td>
+                                </tr>
+                                <tr>
+                                    <td>TakeOff Distance to clear 50ft Obstacle</td>
+                                    <td>{distanceAndCoursePlane1.takeOffDistanceClear50FeetObstacles}</td>
+                                </tr>
+                                <tr>
+                                    <td>TakeOff Distance grass Runway</td>
+                                    <td>{distanceAndCoursePlane1.takeOffDistanceGrassRunway}</td>
+                                </tr>
+                                <tr>
+                                    <td>TakeOff Distance grass Runway to clear 50ft Obstacle</td>
+                                    <td>{distanceAndCoursePlane1.takeOffDistanceGrassRunwayClear50FeetObstacles}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                )}
+                {/* Primera tabla de resultados de aterrizaje */}
+                {distanceAndCoursePlane1.landingDistance !== 0 && (
+                    <div>
+                        <table className="result-table-Landing">
+                            <tbody>
+                                <tr>
+                                    <td>Landing Distance</td>
+                                    <td>{distanceAndCoursePlane1.landingDistance}</td>
+                                </tr>
+                                <tr>
+                                    <td>Landing Distance To Clear 50 Feet Obstacles</td>
+                                    <td>{distanceAndCoursePlane1.landingDistanceToClear50FeetObstacles}</td>
+                                </tr>
+                                <tr>
+                                    <td>Landing Distance Grass Runway</td>
+                                    <td>{distanceAndCoursePlane1.landingDistanceGrassRunway}</td>
+                                </tr>
+                                <tr>
+                                    <td>Landing Distance Grass Runway To Clear 50 Feet Obstacles</td>
+                                    <td>{distanceAndCoursePlane1.landingDistanceGrassRunwayToClear50FeetObstacles}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                )}
 
-                {
-                    distanceAndCoursePlane.landingDistance !== 0 && (
-                        <div>
-                            <table className="result-table-Landing">
-                                <tbody>
-                                    <tr>
-                                        <td>Landing Distance</td>
-                                        <td>{distanceAndCoursePlane.landingDistance}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Landing Distance To Clear 50 Feet Obstacles</td>
-                                        <td>{distanceAndCoursePlane.landingDistanceToClear50FeetObstacles}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Landing Distance Grass Runway</td>
-                                        <td>{distanceAndCoursePlane.landingDistanceGrassRunway}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Landing Distance Grass Runway To Clear 50 Feet Obstacles</td>
-                                        <td>{distanceAndCoursePlane.landingDistanceGrassRunwayToClear50FeetObstacles}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    )
-                }
             </div>
 
             <div className='generate'>
@@ -282,8 +310,8 @@ const PageC150l = () => {
                         min={948}
                         max={1050}
                         step={1}
-                        value={pressure}
-                        onChange={(newValue) => setPressure(newValue)}
+                        value={pressure2}
+                        onChange={(newValue) => setPressure2(newValue)}
                     />
                 </div>
                 <div className="input-row">
@@ -292,8 +320,8 @@ const PageC150l = () => {
                         min={-80}
                         max={50}
                         step={1}
-                        value={temperature}
-                        onChange={(newValue) => setTemperature(newValue)}
+                        value={temperature2}
+                        onChange={(newValue) => setTemperature2(newValue)}
                     />
                 </div>
                 <div className='input-row'>
@@ -302,8 +330,8 @@ const PageC150l = () => {
                         min={-1400}
                         max={14000}
                         step={1}
-                        value={elevation}
-                        onChange={(newValue) => setElevation(newValue)}
+                        value={elevation2}
+                        onChange={(newValue) => setElevation2(newValue)}
                     />
                 </div>
                 <div className='input-row'>
@@ -313,6 +341,8 @@ const PageC150l = () => {
                         min={0}
                         max={360}
                         step={1}
+                        value={windDirection}
+                        onChange={(newValue) => setWindDirection(newValue)}
                     />
                 </div>
                 <div className='input-row'>
@@ -322,7 +352,8 @@ const PageC150l = () => {
                         min={0}
                         max={40}
                         step={1}
-                        onChange={(newValue) => setWindIntensity}
+                        value={windIntensity}
+                        onChange={(newValue) => setWindIntensity(newValue)}
                     />
                 </div>
                 <div className='input-row'>
@@ -332,7 +363,8 @@ const PageC150l = () => {
                         min={118.0}
                         max={118.925}
                         step={1}
-                        onChange={(newValue) => setRadioFrequency}
+                        value={radioFrequency}
+                        onChange={(newValue) => setRadioFrequency(newValue)}
                     />
                 </div>
                 <div className='input-row'>
@@ -342,71 +374,68 @@ const PageC150l = () => {
                         min={530}
                         max={1700}
                         step={1}
-                        onChange={(newValue) => setRadioAids}
+                        value={radioAids}
+                        onChange={(newValue) => setRadioAids(newValue)}
                     />
                 </div>
-                <button type='button' onClick={handleCalculateTakeoffAndLandingDistance}>
+                <button type='button' onClick={() => handleCalculateTakeoffAndLandingDistance(2)}>
                     Calculate takeoff distance
                 </button>
             </form>
             <div className='result-table-container'>
-                {
-                    distanceAndCoursePlane.takeOffDistance !== 0 && (
-                        <div>
-                            <table className="result-table">
-                                <tbody>
-                                    <tr>
-                                        <td>TakeOff Distance</td>
-                                        <td>{distanceAndCoursePlane.takeOffDistance}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>TakeOff Distance to clear 50ft Obstacle</td>
-                                        <td>{distanceAndCoursePlane.takeOffDistanceClear50FeetObstacles}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>TakeOff Distance grass Runway</td>
-                                        <td>{distanceAndCoursePlane.takeOffDistanceGrassRunway}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>TakeOff Distance grass Runway to clear 50ft Obstacle</td>
-                                        <td>{distanceAndCoursePlane.takeOffDistanceGrassRunwayClear50FeetObstacles}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    )
-                }
-                {/* ACA SE COLOCA LA SEGUNDA TABLA LANDING */}
+                {/* Segunda tabla de resultados de despegue */}
+                {distanceAndCoursePlane2.takeOffDistance !== 0 && (
+                    <div>
+                        <table className="result-table">
+                            <tbody>
+                                <tr>
+                                    <td>TakeOff Distance</td>
+                                    <td>{distanceAndCoursePlane2.takeOffDistance}</td>
+                                </tr>
+                                <tr>
+                                    <td>TakeOff Distance to clear 50ft Obstacle</td>
+                                    <td>{distanceAndCoursePlane2.takeOffDistanceClear50FeetObstacles}</td>
+                                </tr>
+                                <tr>
+                                    <td>TakeOff Distance grass Runway</td>
+                                    <td>{distanceAndCoursePlane2.takeOffDistanceGrassRunway}</td>
+                                </tr>
+                                <tr>
+                                    <td>TakeOff Distance grass Runway to clear 50ft Obstacle</td>
+                                    <td>{distanceAndCoursePlane2.takeOffDistanceGrassRunwayClear50FeetObstacles}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                )}
 
-                {
-                    distanceAndCoursePlane.landingDistance !== 0 && (
-                        <div>
-                            <table className="result-table-Landing">
-                                <tbody>
-                                    <tr>
-                                        <td>Landing Distance</td>
-                                        <td>{distanceAndCoursePlane.landingDistance}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Landing Distance To Clear 50 Feet Obstacles</td>
-                                        <td>{distanceAndCoursePlane.landingDistanceToClear50FeetObstacles}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Landing Distance Grass Runway</td>
-                                        <td>{distanceAndCoursePlane.landingDistanceGrassRunway}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Landing Distance Grass Runway To Clear 50 Feet Obstacles</td>
-                                        <td>{distanceAndCoursePlane.landingDistanceGrassRunwayToClear50FeetObstacles}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    )
-                }
+                {/* Segunda tabla de resultados de aterrizaje */}
+                {distanceAndCoursePlane2.landingDistance !== 0 && (
+                    <div>
+                        <table className="result-table-Landing">
+                            <tbody>
+                                <tr>
+                                    <td>Landing Distance</td>
+                                    <td>{distanceAndCoursePlane2.landingDistance}</td>
+                                </tr>
+                                <tr>
+                                    <td>Landing Distance To Clear 50 Feet Obstacles</td>
+                                    <td>{distanceAndCoursePlane2.landingDistanceToClear50FeetObstacles}</td>
+                                </tr>
+                                <tr>
+                                    <td>Landing Distance Grass Runway</td>
+                                    <td>{distanceAndCoursePlane2.landingDistanceGrassRunway}</td>
+                                </tr>
+                                <tr>
+                                    <td>Landing Distance Grass Runway To Clear 50 Feet Obstacles</td>
+                                    <td>{distanceAndCoursePlane2.landingDistanceGrassRunwayToClear50FeetObstacles}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                )}
             </div>
         </div>
-
     );
 }
 

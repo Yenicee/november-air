@@ -1,6 +1,7 @@
 import './styles.css';
 
-// helpers.jsx
+// helpers.jsx del avion C150L
+
 export const GenerateRows = (rowCount) => {
   const rows = [];
   for (let i = 0; i < rowCount; i++) {
@@ -60,4 +61,5 @@ export const GenerateRows = (rowCount) => {
     );
   }
   return rows;
+  
 };

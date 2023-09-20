@@ -410,5 +410,5 @@ const CalculateC150L = {
 
 };
 
-export default CalculateC150L;
 
+export default CalculateC150L;

@@ -62,8 +62,8 @@ const PageC182T = () => {
                             min={2300}
                             max={3100}
                             step={1}
-                            value={weight}
-                            onChange={(newValue) => setWeight(newValue)}
+                            // value={weight}
+                            // onChange={(newValue) => setWeight(newValue)}
                         />
                     </div>
                     <div className="input-row">
@@ -72,8 +72,8 @@ const PageC182T = () => {
                             min={948}
                             max={1050}
                             step={1}
-                            value={pressure}
-                            onChange={(newValue) => setPressure(newValue)}
+                            // value={pressure}
+                             onChange={(newValue) => setPressure(newValue)}
                         />
                     </div>
                     <div className="input-row">
@@ -82,8 +82,8 @@ const PageC182T = () => {
                             min={-80}
                             max={50}
                             step={1}
-                            value={temperature}
-                            onChange={(newValue) => setTemperature(newValue)}
+                            // value={temperature}
+                             onChange={(newValue) => setTemperature(newValue)}
                         />
                     </div>
                     <div className='input-row'>
@@ -92,8 +92,8 @@ const PageC182T = () => {
                             min={-1400}
                             max={14000}
                             step={1}
-                            value={elevation}
-                            onChange={(newValue) => setElevation(newValue)}
+                            // value={elevation}
+                             onChange={(newValue) => setElevation(newValue)}
                         />
                     </div>
                     <div className='input-row'>

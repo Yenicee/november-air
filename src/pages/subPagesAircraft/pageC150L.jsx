@@ -150,7 +150,7 @@ const PageC150l = () => {
                 />
                 <div className="input-row">
                     <CrearInput
-                        label="Pressure"
+                        label="depPress"
                         min={948}
                         max={1050}
                         step={1}
@@ -160,7 +160,7 @@ const PageC150l = () => {
                 </div>
                 <div className="input-row">
                     <CrearInput
-                        label="Temperature"
+                        label="depTemp"
                         min={-80}
                         max={50}
                         step={1}
@@ -170,7 +170,7 @@ const PageC150l = () => {
                 </div>
                 <div className='input-row'>
                     <CrearInput
-                        label="Elevation"
+                        label="depElev"
                         min={-1400}
                         max={14000}
                         step={1}
@@ -180,7 +180,7 @@ const PageC150l = () => {
                 </div>
                 <div className='input-row'>
                     <CrearInput
-                        label="WindDirection"
+                        label="depWindDir"
                         name="quantity"
                         min={0}
                         max={360}
@@ -191,7 +191,7 @@ const PageC150l = () => {
                 </div>
                 <div className='input-row'>
                     <CrearInput
-                        label="WindIntensity"
+                        label="depWindInt"
                         name="quantity"
                         min={0}
                         max={40}
@@ -306,7 +306,7 @@ const PageC150l = () => {
                 />
                 <div className="input-row">
                     <CrearInput
-                        label="Pressure"
+                        label="arrPress"
                         min={948}
                         max={1050}
                         step={1}
@@ -316,7 +316,7 @@ const PageC150l = () => {
                 </div>
                 <div className="input-row">
                     <CrearInput
-                        label="Temperature"
+                        label="arrTemp"
                         min={-80}
                         max={50}
                         step={1}
@@ -326,7 +326,7 @@ const PageC150l = () => {
                 </div>
                 <div className='input-row'>
                     <CrearInput
-                        label="Elevation"
+                        label="arrElev"
                         min={-1400}
                         max={14000}
                         step={1}
@@ -336,7 +336,7 @@ const PageC150l = () => {
                 </div>
                 <div className='input-row'>
                     <CrearInput
-                        label="WindDirection"
+                        label="arrWindDir"
                         name="quantity"
                         min={0}
                         max={360}
@@ -347,7 +347,7 @@ const PageC150l = () => {
                 </div>
                 <div className='input-row'>
                     <CrearInput
-                        label="WindIntensity"
+                        label="arrWindInt"
                         name="quantity"
                         min={0}
                         max={40}

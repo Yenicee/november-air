@@ -11,6 +11,10 @@ export const GenerateRows = (rowCount) => {
           <td>FROM</td>
           <td className="fuel-rem">TO</td>
         </tr>
+        <td>COM</td>
+          <td className="fuel-rem">NAV</td>
+          <td>COM</td>
+          <td className="fuel-rem">NAV</td>
         <td className="fuel-rem">ALT</td>
         <td className="fuel-rem">QNH/QNE</td>
         <tr>

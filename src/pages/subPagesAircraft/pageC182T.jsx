@@ -1,7 +1,7 @@
 import { useState } from "react";
 import CalculateC182T from "../../components/aircraft/C182T";
 import CrearInput from "../../components/input";
-import { GenerateRows } from "../../components/helpers";
+import  {GenerateRows}  from "../../components/helpers";
 
 const PageC182T = () => {
     const [rowCount, setRowCount] = useState(0);

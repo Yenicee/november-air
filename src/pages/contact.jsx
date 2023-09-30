@@ -73,7 +73,7 @@ const Contact = () => {
 
     return (
         <div>
-            <h1>Contact</h1>
+            <h1>Contact Us</h1>
             <div className='login-box'>
                 <form onSubmit={handleFormSubmit}>
                     <div className='user-box'>

@@ -270,3 +270,10 @@ html, body {
     transform: translate(0%,-100%);
   }
 }
+
+h1{
+  text-align: center;
+}
+p{
+  text-align: center;
+}

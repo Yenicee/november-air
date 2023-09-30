@@ -2,7 +2,7 @@ import './styles.css';
 import React, { useState } from "react";
 import CrearInput from "../../components/input";
 import CalculateC150L from "../../components/aircraft/C150L";
-import { GenerateRows } from '../../components/helpers';
+import  {GenerateRows}  from '../../components/helpers'; 
 
 const PageC150l = () => {
     const [rowCount, setRowCount] = useState(0);
@@ -281,7 +281,7 @@ const PageC150l = () => {
 
             </div>
 
-            <div className='generate'>
+             <div className='generate'>
                 <div>
                     <input type="number"
                         id='quantity'
@@ -295,7 +295,7 @@ const PageC150l = () => {
                 <table>
                     <tbody>{GenerateRows(rowCount)}</tbody>
                 </table>
-            </div>
+            </div> 
 
             <h2>Arrival Airport</h2>
             <form className="input-form">

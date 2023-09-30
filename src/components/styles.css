@@ -11,11 +11,24 @@
   border: 0.1rem solid #ccc;
 }
 
+
 .fuel-rem tr {
   flex: 2;
 }
 
-td {
+.row-container td {
+  color: red;
   border: 0.1rem solid #ccc;
   font-size: 0.8rem;
+  padding: 3px ;
+  margin-right: 5px;
+  width: 70px; 
+  
+}
+.fuel-rem input{
+  width: 100%;
+  padding: 3px;
+  border: 1px solid #ccc;
+  border-radius: 0;
+  color: red;
 }
